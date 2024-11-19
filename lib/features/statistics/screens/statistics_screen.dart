@@ -28,6 +28,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         currentTaskCount = taskCount;
       });
     }
+    // await prefs.setInt(counterName, _counter);
   }
 
   @override
