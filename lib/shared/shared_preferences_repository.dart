@@ -9,29 +9,32 @@ class SharedPreferencesRepository implements DatabaseRepository {
   @override
   Future<void> addItem(String item) async {
     _items.add(item);
+    await _saveItem(); // Speichert Liste in SharedPreferences
   }
 
-// Löschen und das gelöschte speichern
+  // Löschen und das gelöschte Speichern
   @override
   Future<void> deleteItem(int index) async {
     _items.removeAt(index);
+    await _saveItem();
   }
 
-// Bearbeiten und das bearbeitete speichern
+  // Bearbeiten und das bearbeitete Speichern
   @override
   Future<void> editItem(int index, String newItem) async {
     getItems();
     _items[index] = newItem;
+    await _saveItem();
   }
 
-// Zeigt alles was gespeichert wurde in einer Liste
+  // Zeigt alles was gespeichert wurde in einer Liste
   @override
   Future<List<String>> getItems() async {
     _items = await prefs.getStringList("Aufgaben") ?? [];
     return _items;
   }
 
-// Zeigt unter Statistik an wie viele Einträge gespeichert wurden.
+  // Zeigt unter Statistik an wie viele Einträge gespeichert wurden.
   @override
   Future<int> get itemCount async {
     await getItems();
@@ -40,6 +43,6 @@ class SharedPreferencesRepository implements DatabaseRepository {
 
   // Speichert die Funktion saveItem
   Future<void> _saveItem() async {
-    await prefs.setStringList("Aufgaben", _items);
+    await prefs.setStringList("Aufgabe", _items);
   }
 }
