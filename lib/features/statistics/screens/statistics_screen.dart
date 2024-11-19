@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_beautiful_checklist_exercise/features/statistics/widgets/task_counter_card.dart';
 import 'package:simple_beautiful_checklist_exercise/shared/database_repository.dart';
 
@@ -15,6 +16,8 @@ class StatisticsScreen extends StatefulWidget {
 }
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
+  final SharedPreferencesAsync prefs = SharedPreferencesAsync();
+
   int currentTaskCount = 0;
 
   void loadItemCount() async {
