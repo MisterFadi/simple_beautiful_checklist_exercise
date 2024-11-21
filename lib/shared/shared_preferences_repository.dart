@@ -43,6 +43,6 @@ class SharedPreferencesRepository implements DatabaseRepository {
 
   // Speichert die Funktion saveItem
   Future<void> _saveItem() async {
-    await prefs.setStringList("Aufgabe", _items);
+    await prefs.setStringList("Aufgaben", _items);
   }
 }
